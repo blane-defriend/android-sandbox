@@ -39,7 +39,8 @@ android {
         }
 
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -60,6 +61,22 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+androidComponents {
+    beforeVariants { builder ->
+        if (builder.productFlavors.contains("example" to "Banana") && builder.buildType == "release") {
+            println("disabling proguard for variant ${builder.name}")
+            builder.isMinifyEnabled = false
+            builder.shrinkResources = false
+        }
+    }
+    onVariants { variant ->
+        println("Variant name: ${variant.name}")
+        println("minify enabled: ${variant.isMinifyEnabled}")
+        println("shrink resources: ${variant.shrinkResources}")
+        println()
     }
 }
 
