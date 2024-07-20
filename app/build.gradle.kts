@@ -21,6 +21,18 @@ android {
         }
     }
 
+    flavorDimensions += "example"
+
+    productFlavors {
+        register("Apple") {
+            dimension = "example"
+        }
+
+        register("Banana") {
+            dimension = "example"
+        }
+    }
+
     buildTypes {
         getByName("debug") {
 
