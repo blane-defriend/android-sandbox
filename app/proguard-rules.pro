@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-whyareyoukeeping class com.example.android_sandbox.UnusedClass {
+    unusedFunc();
+    otherUnusedFunc();
+}
+-whyareyoukeeping class com.example.android_sandbox.OtherClass {
+    someFunc();
+}
+-whyareyoukeeping class com.example.android_sandbox.JunkClass {
+    junkFunc();
+}
+
+-keepclasseswithmembers @com.example.android_sandbox.annotation.ClassAnnotation class ** {
+    @com.example.android_sandbox.annotation.MethodAnnotation <methods>;
+}
